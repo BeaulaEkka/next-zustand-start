@@ -5,7 +5,14 @@ const tasks = [
     id: '1234',
     title: 'Our first task',
     description: 'Some description',
-    status: 'DONE'
+    status: 'TODO'
+  },
+
+  {
+    id: '4545',
+    title: 'Our second task',
+    description: 'Some description',
+    status: 'IN_PROGRESS'
   }
 ]
 
