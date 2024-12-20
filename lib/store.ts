@@ -1,11 +1,12 @@
-import { create } from "domain";
+import { create } from "zustand";
+import { v4 as uuid } from "uuid";
 
 export type Status = "TODO" | "IN_PORGRESS" | "DONE";
 
 export type Task = {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   status: Status;
 };
 
@@ -21,7 +22,22 @@ export type Actions = {
 
 export const useTaskStore = create<State & Actions>()((set) => ({
   tasks: [],
-  addTask: () => {},
-  removeTask: () => {},
-  updateTask: () => {},
+  addTask: (title: string, description?: string) =>
+    set((state) => ({
+      tasks: [
+        ...state.tasks,
+        { id: uuid(), title, description, status: "TODO" },
+      ],
+    })),
+  removeTask: (id: string) => {
+    set((state) => ({
+      tasks: state.tasks.filter((task) => task.id !== id),
+    }));
+  },
+  updateTask: (id: string, status: Status) =>
+    set((state) => ({
+      tasks: state.tasks.map((task) =>
+        task.id === id ? { ...task, status } : task
+      ),
+    })),
 }));

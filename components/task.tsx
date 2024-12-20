@@ -15,9 +15,9 @@ export default function Task({
       className={cn(
         'flex cursor-move items-start justify-between rounded-lg bg-white px-3 py-2 text-gray-900',
         {
-          'border-2 border-sky-500': status === 'TODO',
-          'border-2 border-amber-500': status === 'IN_PROGRESS',
-          'border-2 border-emerald-500': status === 'DONE'
+          'border-4 border-sky-500': status === 'TODO',
+          'border-4 border-amber-500': status === 'IN_PROGRESS',
+          'border-4 border-emerald-500': status === 'DONE'
         }
       )}
     >

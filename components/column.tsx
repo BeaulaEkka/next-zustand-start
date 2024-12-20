@@ -13,6 +13,13 @@ const tasks = [
     title: 'Our second task',
     description: 'Some description',
     status: 'IN_PROGRESS'
+  },
+
+  {
+    id: '2020',
+    title: 'Our third task',
+    description: 'Some description',
+    status: 'DONE'
   }
 ]
 
