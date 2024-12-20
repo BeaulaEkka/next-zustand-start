@@ -73,6 +73,7 @@
 // }
 
 'use client'
+
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -85,28 +86,24 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import Form from 'next/form'
 import { Textarea } from './textarea'
 import { useTaskStore } from '@/lib/store'
+import { useState } from 'react'
 
 export function NewTodoDialogue() {
   const addTask = useTaskStore(state => state.addTask)
+  const [open, setOpen] = useState(false)
 
-  const form = Form({
-    id: 'todoForm',
-    initialValues: {
-      title: '',
-      description: ''
-    }
-  })
+  async function handleSubmit(formData: FormData) {
+    const title = String(formData.get('title'))
+    const description = String(formData.get('description'))
 
-  const handleSubmit = async () => {
-    'use server'
-    addTask(data)
+    addTask(title, description)
+    setOpen(false)
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant='secondary'>+ Add New Todo</Button>
       </DialogTrigger>
@@ -117,22 +114,17 @@ export function NewTodoDialogue() {
             What do you want to get done today.
           </DialogDescription>
         </DialogHeader>
-        <form {...form}>
+        <form action={handleSubmit}>
           <div className='grid gap-4 py-4'>
             <div className='grid grid-cols-4 items-center gap-4'>
-              <Label htmlFor='name' className='text-right'>
+              <Label htmlFor='title' className='text-right'>
                 Title
               </Label>
-              <Input
-                id='title'
-                name='title'
-                className='col-span-3'
-                {...form.$('title')}
-              />
+              <Input id='title' name='title' className='col-span-3' required />
             </div>
 
             <div className='grid grid-cols-4 items-center gap-4'>
-              <Label htmlFor='username' className='text-right'>
+              <Label htmlFor='description' className='text-right'>
                 Description
               </Label>
               <Textarea
@@ -140,16 +132,11 @@ export function NewTodoDialogue() {
                 name='description'
                 placeholder='Enter description'
                 className='col-span-3'
-                {...form.$('description')}
               />
             </div>
           </div>
           <DialogFooter>
-            <DialogTrigger asChild>
-              <Button type='submit' form='todoForm'>
-                Save changes
-              </Button>
-            </DialogTrigger>
+            <Button type='submit'>Save changes</Button>
           </DialogFooter>
         </form>
       </DialogContent>
