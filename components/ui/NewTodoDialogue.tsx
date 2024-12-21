@@ -108,13 +108,15 @@ export function NewTodoDialogue() {
           </DialogDescription>
         </DialogHeader>
         <form
-          action={async formData => {
+          action={
+            async formData => {
             const result = await createTodo(formData)
             if (result.success) {
               addTask(result.title, result.description)
               setOpen(false)
             }
-          }}
+          }
+        }
         >
           <div className='grid gap-4 py-4'>
             <div className='grid grid-cols-4 items-center gap-4'>
