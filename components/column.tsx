@@ -3,28 +3,28 @@ import { useTaskStore } from '@/lib/store'
 import Task from './task'
 import { useMemo } from 'react'
 
-const tasks = [
-  {
-    id: '1234',
-    title: 'Our first task',
-    description: 'Some description',
-    status: 'TODO'
-  },
+// const tasks = [
+//   {
+//     id: '1234',
+//     title: 'Our first task',
+//     description: 'Some description',
+//     status: 'TODO'
+//   },
 
-  {
-    id: '4545',
-    title: 'Our second task',
-    description: 'Some description',
-    status: 'IN_PROGRESS'
-  },
+//   {
+//     id: '4545',
+//     title: 'Our second task',
+//     description: 'Some description',
+//     status: 'IN_PROGRESS'
+//   },
 
-  {
-    id: '2020',
-    title: 'Our third task',
-    description: 'Some description',
-    status: 'DONE'
-  }
-]
+//   {
+//     id: '2020',
+//     title: 'Our third task',
+//     description: 'Some description',
+//     status: 'DONE'
+//   }
+// ]
 
 export default function Column({
   title,
