@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from './ui/button'
 import { useTaskStore } from '@/lib/store'
@@ -16,6 +16,11 @@ export default function Task({
 }) {
   const dragTask = useTaskStore(state => state.dragTask)
   const removeTask = useTaskStore(state => state.removeTask)
+
+  useEffect(() => {
+    useTaskStore.persist.rehydrate()
+  }, [])
+
   return (
     <div
       className={cn(
@@ -29,16 +34,20 @@ export default function Task({
       draggable
       onDrag={() => dragTask(id)}
     >
-      <div>
+      <div className='grid sm:grid-cols-1 lg:grid-cols-3'>
         <h3 className='font-medium text-gray-700'>{title}</h3>
         <p className='text-sm font-light text-gray-500'>{description}</p>
       </div>
 
-      <Button className='cursor-pointer' onClick={() => removeTask(id)}>
+      <Button
+        variant='ghost'
+        className='cursor-pointer'
+        onClick={() => removeTask(id)}
+      >
         <svg
           xmlns='http://www.w3.org/2000/svg'
           viewBox='0 0 24 24'
-          fill='currentColor'
+          fill='red'
           className='h-5 w-5 text-gray-500 hover:text-rose-400'
         >
           <path
