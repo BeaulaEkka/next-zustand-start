@@ -16,7 +16,6 @@ export default function Task({
 }) {
   const dragTask = useTaskStore(state => state.dragTask)
   const removeTask = useTaskStore(state => state.removeTask)
-
   useEffect(() => {
     useTaskStore.persist.rehydrate()
   }, [])
@@ -34,7 +33,7 @@ export default function Task({
       draggable
       onDrag={() => dragTask(id)}
     >
-      <div className='grid sm:grid-cols-1 lg:grid-cols-3'>
+      <div>
         <h3 className='font-medium text-gray-700'>{title}</h3>
         <p className='text-sm font-light text-gray-500'>{description}</p>
       </div>
