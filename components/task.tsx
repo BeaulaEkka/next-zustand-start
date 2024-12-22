@@ -16,6 +16,7 @@ export default function Task({
 }) {
   const dragTask = useTaskStore(state => state.dragTask)
   const removeTask = useTaskStore(state => state.removeTask)
+  
   useEffect(() => {
     useTaskStore.persist.rehydrate()
   }, [])

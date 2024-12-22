@@ -27,7 +27,7 @@ export default function Column({
   }
 
   return (
-    <section className='h-[600px] flex-1'>
+    <section className='h-[600px] flex-1 border'>
       <h2 className='ml-1 font-serif text-2xl font-semibold uppercase'>
         {title}
       </h2>
